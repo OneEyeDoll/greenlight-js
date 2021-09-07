@@ -1,0 +1,47 @@
+{
+  "name": "greenlight",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "A modular MVC-based framework for node.js",
+  "main": "./build/module.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc ",
+    "clean": "tsc --clean",
+    "start": "node ./test/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OneEyeDoll/greenglight.js.git"
+  },
+  "keywords": [
+    "mvc",
+    "module",
+    "framework",
+    "green",
+    "greenlight"
+  ],
+  "author": "OneEyeDoll",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OneEyeDoll/greenglight.js/issues"
+  },
+  "homepage": "https://github.com/OneEyeDoll/greenglight.js#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.6.5",
+    "sqlite3": "^4.2.0",
+    "twing": "^5.0.2"
+  },
+  "bin": {
+    "greenlight": "./init.js"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.7.10",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2"
+  }
+}

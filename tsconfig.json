@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {     
+      "module": "es6",
+      "target": "es5",
+      "allowSyntheticDefaultImports": true,
+      "outDir": "build"
+    },
+    "exclude": [
+      "node_modules",
+      "test"
+  ],
+    "include": ["src", "decs.d.ts"],
+    "files": [
+        "./sequelize_settings.ts",
+        "./models_sync.ts",
+        "./server.ts",
+        "./router.ts",
+        "./settings_parser.ts",
+        "./errors.ts",
+        "./module.ts"
+      ]
+}
