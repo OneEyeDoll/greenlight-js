@@ -1,4 +1,4 @@
-import {GreenlightRouter} from "../build/module.js"
+import {GreenlightRouter} from "greenlight"
 
 /* Write your code here */
 const Views={
