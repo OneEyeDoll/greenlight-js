@@ -1,7 +1,7 @@
 import {default as Sequelize} from 'sequelize';
 const DataTypes=Sequelize.DataTypes;
 import settings from './settings.js'
-import {SequelizeSettings,GreenlightUser} from '../build/module.js';
+import {SequelizeSettings,GreenlightUser} from '../build/lib/module.js';
 //Instantiating a sequelize settings object
 let sequelize_settings=new SequelizeSettings(settings);
 

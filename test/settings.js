@@ -2,7 +2,7 @@ import path from 'path'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import { fileURLToPath } from 'url';
-import {GreenlightSettings} from '../build/module.js'
+import {GreenlightSettings} from '../build/lib/module.js'
 
 const PATH=path.dirname(fileURLToPath(import.meta.url));
 

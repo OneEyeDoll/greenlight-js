@@ -1,7 +1,7 @@
 import {Models} from './models.js'
 import Views from './views.js'
 import settings from './settings.js'
-import {sync_function,GreenlightServer} from "../build/module.js"
+import {sync_function,GreenlightServer} from "../build/lib/module.js"
 
 sync_function(Models).then( ()=>{
     let server=new GreenlightServer(settings);

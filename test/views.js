@@ -1,5 +1,5 @@
-import {GreenlightRouter} from "../build/module.js"
-import {GreenlightAuth} from '../build/module.js'
+import {GreenlightRouter} from "../build/lib/module.js"
+import {GreenlightAuth} from '../build/lib/module.js'
 
 /* Write your code here */
 const Views={
