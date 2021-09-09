@@ -1,4 +1,6 @@
 import path from 'path'
+import cookieParser from 'cookie-parser'
+import bodyParser from 'body-parser'
 import { fileURLToPath } from 'url';
 import {GreenlightSettings} from '../build/module.js'
 
@@ -21,8 +23,12 @@ let settings_array={
     PRODUCTION:false,
 
     STATIC_PATH: '/static',
-}
 
+    MIDDLEWARES: [
+        cookieParser(),
+        bodyParser(),
+    ]
+}
 
 //Settings object setup section. Do not edit the code below
 
