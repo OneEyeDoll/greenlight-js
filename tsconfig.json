@@ -11,12 +11,14 @@
   ],
     "include": ["src", "decs.d.ts"],
     "files": [
-        "./sequelize_settings.ts",
-        "./models_sync.ts",
-        "./server.ts",
-        "./router.ts",
-        "./settings_parser.ts",
-        "./errors.ts",
-        "./module.ts"
+        "./lib/sequelize_settings.ts",
+        "./lib/models_sync.ts",
+        "./lib/server.ts",
+        "./lib/router.ts",
+        "./lib/settings_parser.ts",
+        "./lib/errors.ts",
+        "./base_models/user.ts",
+        "./lib/auth.ts",
+        "./lib/module.ts"
       ]
 }

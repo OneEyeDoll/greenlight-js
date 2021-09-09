@@ -1,6 +1,5 @@
 import  { Sequelize } from 'sequelize';
 import {BackendError} from "./errors.js"
-import GreenlightSettings from './build/settings.js'
 
 /*
 The sequelize object is exported to allow user to construct new Models from it. The object depends on settings
@@ -8,7 +7,7 @@ The sequelize object is exported to allow user to construct new Models from it. 
 class SequelizeSettings{
    public sequelize;//sequelize property to export
    private settings;//Settings property
-   constructor(settings:GreenlightSettings){
+   constructor(settings){
      this.settings=settings.settings
     //Setup for SQLite
     switch(this.settings.BACKEND.TYPE){
@@ -19,6 +18,10 @@ class SequelizeSettings{
         this.dialect()
       case 'mysql':
         this.dialect();
+      case 'mssql':
+        this.dialect();
+      case 'mariadb':
+        this.dialect()
       default:
          throw new BackendError("The Backend type is invalid.");
     }
