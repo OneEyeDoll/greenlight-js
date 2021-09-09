@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "description": "A modular MVC-based framework for node.js",
-  "main": "./build/module.js",
+  "main": "./build/lib/module.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc ",
