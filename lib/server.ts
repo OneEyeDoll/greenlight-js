@@ -6,11 +6,13 @@ import {GreenlightError} from "./errors.js"
 import {TwingEnvironment, TwingLoaderFilesystem} from "twing"
 import GreenlightSettings  from "./settings_parser";
 
+//Response types
 enum Responses {
   RENDER,
   PLAINTEXT,
   JSON
 }
+//Type of requests
 enum Request_Types{
   POST,
   GET,
@@ -98,9 +100,9 @@ class GreenlightServer{
           }
         //Switching through request type
         switch(request_type){
-        case GreenlightServer.Request_Types.GET:
-          this.app.get(route, (req,res)=>callback(req,res));
-            break;
+          case GreenlightServer.Request_Types.GET:
+            this.app.get(route, (req,res)=>callback(req,res));
+              break;
           case GreenlightServer.Request_Types.POST:
             this.app.post(route, (req,res)=>callback(req,res));
             break;
@@ -110,8 +112,6 @@ class GreenlightServer{
           case GreenlightServer.Request_Types.DELETE:
             this.app.delete(route, (req,res)=>callback(req,res));
             break;
-  
-  
         default:
             throw new GreenlightError("The request type specified does not exist.",null);
             break;
@@ -121,7 +121,7 @@ class GreenlightServer{
     }
 
     private setMiddlewares(){
-      let middleware:any;
+      let middleware:()=>any;
       for(middleware of this.settings.MIDDLEWARES){
         this.app.use(middleware);
       }

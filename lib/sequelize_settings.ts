@@ -23,11 +23,12 @@ class SequelizeSettings{
       case 'mariadb':
         this.dialect()
       default:
-         throw new BackendError("The Backend type is invalid.");
+         throw new BackendError("The Backend DIALECT is invalid.");
     }
       
    }
    sqlite(){
+     //Usage for sqlite
      if(!this.settings.BACKEND.DATABASE_PATH){
        throw new BackendError("Please specify PATH in BACKEND.")
      }
@@ -37,6 +38,20 @@ class SequelizeSettings{
     });
    }
    dialect(){
+    //Check if required values exist
+     if(!this.settings.BACKEND.DATABASE){
+      throw new BackendError("Please specify DATABASE in BACKEND.")
+    }
+    if(!this.settings.BACKEND.USERNAME){
+      throw new BackendError("Please specify USERNAME in BACKEND.")
+    }
+    if(!this.settings.BACKEND.PASSWORD){
+      throw new BackendError("Please specify PASSWORD in BACKEND.")
+    }
+    if(!this.settings.BACKEND.HOST){
+      throw new BackendError("Please specify HOST in BACKEND.")
+    }
+
      this.sequelize = new Sequelize(this.settings.BACKEND.DATABASE,this.settings.BACKEND.USERNAME,this.settings.BACKEND.PASSWORD,{
        host:this.settings.BACKEND.HOST,
        dialect:this.settings.BACKEND.DIALECT,

@@ -3,16 +3,20 @@ import helmet from "helmet";
 import session from "express-session";
 import { GreenlightError } from "./errors.js";
 import { TwingEnvironment, TwingLoaderFilesystem } from "twing";
+//Response types
 var Responses;
 (function (Responses) {
     Responses[Responses["RENDER"] = 0] = "RENDER";
     Responses[Responses["PLAINTEXT"] = 1] = "PLAINTEXT";
     Responses[Responses["JSON"] = 2] = "JSON";
 })(Responses || (Responses = {}));
+//Type of requests
 var Request_Types;
 (function (Request_Types) {
     Request_Types[Request_Types["POST"] = 0] = "POST";
     Request_Types[Request_Types["GET"] = 1] = "GET";
+    Request_Types[Request_Types["PATCH"] = 2] = "PATCH";
+    Request_Types[Request_Types["DELETE"] = 3] = "DELETE";
 })(Request_Types || (Request_Types = {}));
 //Server class. This is the core of the framework. There are 2 important methods: serve, that starts an express server and setRoute, that allows to specify a route
 var GreenlightServer = /** @class */ (function () {
@@ -84,12 +88,23 @@ var GreenlightServer = /** @class */ (function () {
             }
         };
         //Switching through request type
-        if (request_type === GreenlightServer.Request_Types.GET)
-            this.app.get(route, function (req, res) { return callback(req, res); });
-        else if (request_type === GreenlightServer.Request_Types.POST)
-            this.app.post(route, function (req, res) { return callback(req, res); });
-        else
-            throw new GreenlightError("The request type specified does not exist.", null);
+        switch (request_type) {
+            case GreenlightServer.Request_Types.GET:
+                this.app.get(route, function (req, res) { return callback(req, res); });
+                break;
+            case GreenlightServer.Request_Types.POST:
+                this.app.post(route, function (req, res) { return callback(req, res); });
+                break;
+            case GreenlightServer.Request_Types.PATCH:
+                this.app.patch(route, function (req, res) { return callback(req, res); });
+                break;
+            case GreenlightServer.Request_Types.DELETE:
+                this.app.delete(route, function (req, res) { return callback(req, res); });
+                break;
+            default:
+                throw new GreenlightError("The request type specified does not exist.", null);
+                break;
+        }
         return true;
     };
     GreenlightServer.prototype.setMiddlewares = function () {
