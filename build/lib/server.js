@@ -29,9 +29,9 @@ var GreenlightServer = /** @class */ (function () {
         this.loader = new TwingLoaderFilesystem(this.settings['TEMPLATE_DIR']); //Creating a Loader based on the TEMPLATE_DIR setting
         this.twing = new TwingEnvironment(this.loader); //Instantiating Twing
         this.setMiddlewares(); //Instantiating middlewares
-        this.app.use(session({ secret: 'Keep it secret',
-            name: 'uniqueSessionID',
-            saveUninitialized: false }));
+        this.app.use(session({ secret: this.settings.SECRET,
+            name: 'GreenlightSession'
+        }));
     }
     GreenlightServer.prototype.serveStatic = function () {
         this.app.use(express.static(this.settings.STATIC_DIR));
@@ -51,8 +51,6 @@ var GreenlightServer = /** @class */ (function () {
     ) {
         var _this = this;
         var callback = function (req, res) {
-            //Create a session key if it doesn't exist
-            console.log(req.session);
             var ctx; //Context to pass to the response
             if (typeof view == "function") //Check if the view object is a function 
                 view(req, res).then(function (ctx) {

@@ -10,4 +10,4 @@ What we offer
 * A wonderful developer experience
 * A growing project, currently updated
 * A framework that is meant to simplify your life
-
+* Scalability and efficiency

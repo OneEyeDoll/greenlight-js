@@ -27,7 +27,9 @@ let settings_array={
     MIDDLEWARES: [
         cookieParser(),
         bodyParser(),
-    ]
+    ],
+
+    SECRET:'unscure123'
 }
 
 //Settings object setup section. Do not edit the code below

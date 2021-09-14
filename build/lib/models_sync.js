@@ -43,7 +43,6 @@ var sync_function = function (Ctx) { return __awaiter(void 0, void 0, void 0, fu
     return __generator(this, function (_c) {
         switch (_c.label) {
             case 0:
-                console.log(Ctx);
                 _a = [];
                 for (_b in Ctx)
                     _a.push(_b);

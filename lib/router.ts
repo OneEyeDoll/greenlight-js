@@ -12,6 +12,11 @@ class GreenlightRouter{
         return {ctx:ctx,template_name:template_name}
     }
 
+    static Redirect(Response,Redirect:string){
+        Response.redirect(Redirect);
+        return null;
+    }
+
 
 
 }

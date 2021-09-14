@@ -22,8 +22,7 @@ const Views={
 
     SignupView: async(Request,Response, Models)=>{
         GreenlightAuth.signup(Models.User,Request.body.username,Request.body.firstName,Request.body.password)
-        Response.redirect('/plaintext')
-        return null;
+        return GreenlightRouter.Redirect(Response,'/plaintext')
     },
     SignupFormView: async(Request,Response, Models)=>{
         return GreenlightRouter.Render({},'signup.html')

@@ -4,7 +4,6 @@ The export contains a promise to wait that all the Models are synchronized with 
 Use sync_function.then to operate with models */
 
 const sync_function=async (Ctx)=>{
-        console.log(Ctx)
         for(let model in Ctx){
                 await Ctx[model].sync();
         }

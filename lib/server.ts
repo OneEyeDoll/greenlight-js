@@ -39,9 +39,9 @@ class GreenlightServer{
         this.loader = new TwingLoaderFilesystem(this.settings['TEMPLATE_DIR']);//Creating a Loader based on the TEMPLATE_DIR setting
         this.twing = new TwingEnvironment(this.loader);//Instantiating Twing
         this.setMiddlewares();//Instantiating middlewares
-        this.app.use(session({secret:'Keep it secret'
-,name:'uniqueSessionID'
-,saveUninitialized:false}))
+        this.app.use(session({secret:this.settings.SECRET
+,name:'GreenlightSession'
+}))
     }
     serveStatic(){
       this.app.use(express.static(this.settings.STATIC_DIR))
@@ -61,8 +61,6 @@ class GreenlightServer{
       )
       :Boolean{
         let callback=(req, res) => {
-          //Create a session key if it doesn't exist
-            console.log(req.session)
             let ctx:any;//Context to pass to the response
             if(typeof view=="function") //Check if the view object is a function 
               view(req,res).then((ctx)=>{

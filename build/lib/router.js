@@ -9,6 +9,11 @@ var GreenlightRouter = /** @class */ (function () {
     GreenlightRouter.Render = function (ctx, template_name) {
         return { ctx: ctx, template_name: template_name };
     };
+    GreenlightRouter.Redirect = function (Response, Redirect) {
+        console.log(Response);
+        Response.redirect(Redirect);
+        return null;
+    };
     return GreenlightRouter;
 }());
 export default GreenlightRouter;
