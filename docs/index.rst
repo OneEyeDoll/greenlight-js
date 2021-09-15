@@ -36,6 +36,7 @@ Rendering a template
 
 .. code-block:: javascript
     :linenos:
+    
     //In views.js, inside the Views associative array
     RenderViewTest: async  (Request,Response,Models)=>{
         return GreenlightRouter.Render(Request.params,'index.html')
