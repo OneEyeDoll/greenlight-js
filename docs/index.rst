@@ -10,9 +10,10 @@ What to expect from this framework
 
 * A secure environment
 * A wonderful developer experience
-* A growing project, currently updated
+* A growing project, currently mantained
 * A framework that is meant to simplify your life
 * Scalability and efficiency
+* A template system based 
 
 Examples
 ------
@@ -29,3 +30,12 @@ Declaring a route
         GreenlightServer.Responses.RENDER,//Response type
         GreenlightServer.Request_Types.GET//Request type
     );
+
+Rendering a template
+
+.. code-block:: javascript
+    :linenos:
+    //In views.js, inside the Views associative array
+    RenderViewTest: async  (Request,Response,Models)=>{
+        return GreenlightRouter.Render(Request.params,'index.html')
+    },
