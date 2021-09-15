@@ -3,7 +3,7 @@ Welcome
 Welcome to Greenlight.js documentation!
 =====
 
-Hello, welcome to the Greenlight.js documentation. This is a MVC framework for Node.js, strongly inspired by the Python's Django Framework. Our main goal is to let you waste less time writing code and focus on your application's logic. This framework is designed to let you write complex apps in less time possible.
+Hello, welcome to the Greenlight.js documentation. This is a MVC framework for Node.js, strongly inspired by the Python's Django Framework. We use Express as main server, with several abstraction to speed up the coding process.Our main goal is to let you waste less time writing code and focus on your application's logic. This framework is designed to let you write complex apps in less time possible. We call "Views" what others call "Controllers", because we are following Django's philosophy.
 
 What to expect from this framework
 =====
@@ -63,3 +63,5 @@ Return a JSON response
             return {TEST:'TEST'};
         },
     }
+
+Add a Middleware to Express server.
