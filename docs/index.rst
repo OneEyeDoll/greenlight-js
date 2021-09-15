@@ -13,7 +13,7 @@ What to expect from this framework
 * A growing project, currently mantained
 * A framework that is meant to simplify your life
 * Scalability and efficiency
-* A template system based 
+* A template system based on Twig, named Twing
 
 Examples
 ------
@@ -48,5 +48,18 @@ Rendering a template
         //In views.js
         RenderViewTest: async  (Request,Response,Models)=>{
             return GreenlightRouter.Render(Request.params,'index.html')
+        },
+    }
+
+Return a JSON response
+=====
+
+.. code-block:: javascript
+    :linenos:
+
+    const Views={
+        JSONViewTest: async (Request,Response,Models)=>{
+        
+            return {TEST:'TEST'};
         },
     }
