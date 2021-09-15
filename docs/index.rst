@@ -64,4 +64,28 @@ Return a JSON response
         },
     }
 
-Add a Middleware to Express server.
+
+Return a Plaintext response
+=====
+
+.. code-block:: javascript
+    :linenos:
+
+    const Views={
+        PTextViewTest: async (Request,Response,Models)=>{
+            return "Plaintext";
+        },
+    }
+
+Create a builtin User Models
+=====
+
+.. code-block:: javascript
+    :linenos:
+    import {GreenlightUser} from '.greenlight';
+
+    //In models.js
+    const Models={
+        User : sequelize_settings.sequelize.define('Users',new GreenlightUser()),
+    }
+
