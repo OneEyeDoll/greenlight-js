@@ -43,8 +43,10 @@ Rendering a template
 .. code-block:: javascript
     :linenos:
 
-    
-    //In views.js
-    RenderViewTest: async  (Request,Response,Models)=>{
-        return GreenlightRouter.Render(Request.params,'index.html')
-    },
+    const Views={
+
+        //In views.js
+        RenderViewTest: async  (Request,Response,Models)=>{
+            return GreenlightRouter.Render(Request.params,'index.html')
+        },
+    }
