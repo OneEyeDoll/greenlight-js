@@ -32,6 +32,7 @@ Declaring a route
     );
 
 Rendering a template
+=====
 
 .. code-block:: javascript
     :linenos:
