@@ -23,7 +23,11 @@ Declaring a route
 
 .. code-block:: javascript
     :linenos:
-    
+
+    sync_function(Models).then( ()=>{
+    let server=new GreenlightServer(settings);
+
+    ...
     //In server.js
         server.setRoute('/render/:id',//Route Name
         (Request,Response)=>Views.RenderViewTest(Request,Response,Models),//View
@@ -31,13 +35,16 @@ Declaring a route
         GreenlightServer.Request_Types.GET//Request type
     );
 
+    });
+
 Rendering a template
 =====
 
 .. code-block:: javascript
     :linenos:
+
     
-    //In views.js, inside the Views associative array
+    //In views.js
     RenderViewTest: async  (Request,Response,Models)=>{
         return GreenlightRouter.Render(Request.params,'index.html')
     },
