@@ -20,7 +20,9 @@ Examples
 Declaring a route
 =====
 
-.. code::
+.. code-block:: javascript
+    :linenos:
+    
     //In server.js
         server.setRoute('/render/:id',//Route Name
         (Request,Response)=>Views.RenderViewTest(Request,Response,Models),//View
