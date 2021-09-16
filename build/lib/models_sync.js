@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var sync_function = function (Ctx) { return __awaiter(void 0, void 0, void 0, function () {
+var Sync = function (Ctx) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, _b, _i, model;
     return __generator(this, function (_c) {
         switch (_c.label) {
@@ -62,4 +62,4 @@ var sync_function = function (Ctx) { return __awaiter(void 0, void 0, void 0, fu
         }
     });
 }); };
-export default sync_function;
+export default Sync;

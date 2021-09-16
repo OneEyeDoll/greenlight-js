@@ -3,13 +3,6 @@ import helmet from "helmet";
 import session from "express-session";
 import { GreenlightError } from "./errors.js";
 import { TwingEnvironment, TwingLoaderFilesystem } from "twing";
-//Response types
-var Responses;
-(function (Responses) {
-    Responses[Responses["RENDER"] = 0] = "RENDER";
-    Responses[Responses["PLAINTEXT"] = 1] = "PLAINTEXT";
-    Responses[Responses["JSON"] = 2] = "JSON";
-})(Responses || (Responses = {}));
 //Type of requests
 var Request_Types;
 (function (Request_Types) {
@@ -30,7 +23,8 @@ var GreenlightServer = /** @class */ (function () {
         this.twing = new TwingEnvironment(this.loader); //Instantiating Twing
         this.setMiddlewares(); //Instantiating middlewares
         this.app.use(session({ secret: this.settings.SECRET,
-            name: 'GreenlightSession'
+            name: 'GreenlightSession',
+            saveUninitialized: true,
         }));
     }
     GreenlightServer.prototype.serveStatic = function () {
@@ -47,37 +41,19 @@ var GreenlightServer = /** @class */ (function () {
     //Using router passed as parameter
     GreenlightServer.prototype.setRoute = function (route, //Route path
     view, //View to process data before render
-    response_type, request_type //Name of the template to render
+    request_type //Name of the template to render
     ) {
         var _this = this;
         var callback = function (req, res) {
             var ctx; //Context to pass to the response
             if (typeof view == "function") //Check if the view object is a function 
                 view(req, res).then(function (ctx) {
-                    //If the context exists, then a response will be thrown
-                    if (ctx !== null && response_type !== null) {
-                        //Switching between response types
-                        switch (response_type) {
-                            //In case of template rendering. The view should return a dict containing template name and the context to the render function.
-                            case GreenlightServer.Responses.RENDER:
-                                res.header("Content-Type", "text/html");
-                                _this.twing.render(ctx.template_name, ctx.ctx).then(function (output) {
-                                    res.end(output);
-                                });
-                                break;
-                            //In case of plaintext Response. The view should return a string.
-                            case GreenlightServer.Responses.PLAINTEXT:
-                                res.header("Content-Type", "text/plain");
-                                res.end(ctx);
-                                break;
-                            //In case of JSON response. The view should return a dict.
-                            case GreenlightServer.Responses.JSON:
-                                res.header("Content-Type", "application/json");
-                                res.end(JSON.stringify(ctx));
-                                break;
-                            default:
-                                throw new GreenlightError("The render type specified does not exist.", res);
-                        }
+                    if (ctx.isRender) {
+                        //In case of template rendering. The view should return a dict containing template name and the context to the render function.
+                        res.header("Content-Type", "text/html");
+                        _this.twing.render(ctx.template_name, ctx.ctx).then(function (output) {
+                            res.end(output);
+                        });
                     }
                 });
             else {
@@ -112,8 +88,6 @@ var GreenlightServer = /** @class */ (function () {
             this.app.use(middleware);
         }
     };
-    //Enum of possible responses. Right now, RENDER, PLAINTEXT, JSON are supported
-    GreenlightServer.Responses = Responses;
     //Enum of possible request methods
     GreenlightServer.Request_Types = Request_Types;
     return GreenlightServer;

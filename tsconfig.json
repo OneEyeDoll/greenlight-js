@@ -14,7 +14,7 @@
         "./lib/sequelize_settings.ts",
         "./lib/models_sync.ts",
         "./lib/server.ts",
-        "./lib/router.ts",
+        "./lib/responses.ts",
         "./lib/settings_parser.ts",
         "./lib/errors.ts",
         "./base_models/user.ts",

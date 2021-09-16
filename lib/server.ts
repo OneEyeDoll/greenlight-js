@@ -6,12 +6,6 @@ import {GreenlightError} from "./errors.js"
 import {TwingEnvironment, TwingLoaderFilesystem} from "twing"
 import GreenlightSettings  from "./settings_parser";
 
-//Response types
-enum Responses {
-  RENDER,
-  PLAINTEXT,
-  JSON
-}
 //Type of requests
 enum Request_Types{
   POST,
@@ -26,8 +20,6 @@ class GreenlightServer{
     private loader:typeof TwingLoaderFilesystem;
     twing:typeof TwingEnvironment;
     private settings;
-    //Enum of possible responses. Right now, RENDER, PLAINTEXT, JSON are supported
-    static Responses=Responses;
     //Enum of possible request methods
     static Request_Types=Request_Types;
     //Constructing server with settings
@@ -40,8 +32,10 @@ class GreenlightServer{
         this.twing = new TwingEnvironment(this.loader);//Instantiating Twing
         this.setMiddlewares();//Instantiating middlewares
         this.app.use(session({secret:this.settings.SECRET
-,name:'GreenlightSession'
-}))
+    ,name:'GreenlightSession',
+    saveUninitialized:true,
+    })
+    )
     }
     serveStatic(){
       this.app.use(express.static(this.settings.STATIC_DIR))
@@ -56,40 +50,20 @@ class GreenlightServer{
     //Using router passed as parameter
     setRoute(route:string,//Route path
       view:any,//View to process data before render
-      response_type:Responses,
-      request_type//Name of the template to render
+      request_type:Number//Name of the template to render
       )
       :Boolean{
         let callback=(req, res) => {
             let ctx:any;//Context to pass to the response
             if(typeof view=="function") //Check if the view object is a function 
               view(req,res).then((ctx)=>{
-                //If the context exists, then a response will be thrown
-                if(ctx!==null&&response_type!==null){
-                //Switching between response types
-                switch(response_type){
+                if(ctx.isRender){
                       //In case of template rendering. The view should return a dict containing template name and the context to the render function.
-                      case GreenlightServer.Responses.RENDER:
                         res.header("Content-Type", "text/html");
                         this.twing.render(ctx.template_name, ctx.ctx).then((output) => {
                           res.end(output);
                         });
-                        break;
-                      //In case of plaintext Response. The view should return a string.
-                      case GreenlightServer.Responses.PLAINTEXT:
-                        res.header("Content-Type", "text/plain");
-                        res.end(ctx);
-                        break;
-                      //In case of JSON response. The view should return a dict.
-                      case GreenlightServer.Responses.JSON:
-                        res.header("Content-Type", "application/json");
-                        res.end(JSON.stringify(ctx));
-                        break;
-                      default:
-                        throw new GreenlightError("The render type specified does not exist.",res);
-
-                      }
-                }
+                    }
               })
             else{
               //If not, it will throw a GreenlightError.

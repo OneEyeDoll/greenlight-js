@@ -31,7 +31,6 @@ Declaring a route
     //In server.js
         server.setRoute('/render/:id',//Route Name
         (Request,Response)=>Views.RenderViewTest(Request,Response,Models),//View
-        GreenlightServer.Responses.RENDER,//Response type
         GreenlightServer.Request_Types.GET//Request type
     );
 
@@ -88,4 +87,5 @@ Create a builtin User Models
     const Models={
         User : sequelize_settings.sequelize.define('Users',new GreenlightUser()),
     }
+
 

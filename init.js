@@ -42,7 +42,7 @@ const Models={
 export {Models};
 `)
 fs.writeFileSync(views,`
-import {GreenlightRouter} from "greenlight"
+import {GreenlightResponses} from "greenlight"
 
 /* Write your code here */
 const Views={
