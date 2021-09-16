@@ -82,6 +82,7 @@ Create a builtin User Models
 
 .. code-block:: javascript
     :linenos:
+    
     import {GreenlightUser} from '.greenlight';
 
     //In models.js
