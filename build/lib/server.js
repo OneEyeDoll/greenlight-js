@@ -48,13 +48,14 @@ var GreenlightServer = /** @class */ (function () {
             var ctx; //Context to pass to the response
             if (typeof view == "function") //Check if the view object is a function 
                 view(req, res).then(function (ctx) {
-                    if (ctx.isRender) {
-                        //In case of template rendering. The view should return a dict containing template name and the context to the render function.
-                        res.header("Content-Type", "text/html");
-                        _this.twing.render(ctx.template_name, ctx.ctx).then(function (output) {
-                            res.end(output);
-                        });
-                    }
+                    if (ctx)
+                        if (ctx.isRender) {
+                            //In case of template rendering. The view should return a dict containing template name and the context to the render function.
+                            res.header("Content-Type", "text/html");
+                            _this.twing.render(ctx.template_name, ctx.ctx).then(function (output) {
+                                res.end(output);
+                            });
+                        }
                 });
             else {
                 //If not, it will throw a GreenlightError.

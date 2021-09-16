@@ -8,12 +8,11 @@ const Views={
     },
 
     PTextViewTest: async (Request,Response,Models)=>{
-        return "Plaintext";
+        return GreenlightResponses.Plaintext(Response,"Plaintext");
     },
 
     JSONViewTest: async (Request,Response,Models)=>{
-        
-        return {TEST:'TEST'};
+        return GreenlightResponses.JSON(Response,{TEST:'TEST'});
     },
 
     SignupView: async(Request,Response, Models)=>{
@@ -21,7 +20,7 @@ const Views={
         return GreenlightResponses.Redirect(Response,'/plaintext')
     },
     SignupFormView: async(Request,Response, Models)=>{
-        return GreenlightResponses.Render({},'signup.html')
+        return GreenlightResponses.Render(Response,{},'signup.html')
     }
 }
 export default Views;

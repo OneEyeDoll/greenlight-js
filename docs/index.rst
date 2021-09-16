@@ -14,6 +14,7 @@ What to expect from this framework
 * A framework that is meant to simplify your life
 * Scalability and efficiency
 * A template system based on Twig, named Twing
+* A Sequelize compatible orm
 
 Examples
 ------
@@ -88,4 +89,57 @@ Create a builtin User Models
         User : sequelize_settings.sequelize.define('Users',new GreenlightUser()),
     }
 
+Reference
+------
+
+GreenlightAuth
+=======
+
+.. code-block:: javascript
+    :linenos:
+
+    static async login(Request,User,Username:string,Password:string,) {
+
+Requires a Express' request object, an Instantiated Greenlight builtin User object, an username and a *plaintext* password.
+This method will add authentication to the current Request.
+You can access the authentication with (RequestObject).session.loggedIn.
+
+.. code-block:: javascript
+    :linenos:
+
+    static logout(Request)
+
+Requires a Express' request object. It will log out the current user.
+
+.. code-block:: javascript
+    :linenos:
+
+    static signup(User,Username:string,firstName:string,Password:string,lastName:string="",Email:string=""){
+
+Requires a Greenlight builtin User object, an Username, a first Name and a password. It can be optionally provided with a last name and an email. It creates a new User object in the database, with the supplied data.
+
+
+Sync
+======
+.. code-block:: javascript
+    :linenos:
+
+    Sync
+
+A function that requires all models in the Database. It will sync the Database with Sequelize.
+
+GreenlightResponses
+======
+.. code-block:: javascript
+    :linenos:
+
+    static  Render(Response,ctx:{},template_name:string)
+
+Requires an Express' response, a context with the data to be passed to the template, and a template name. This method, when used in a view, will render a template.
+
+.. code-block:: javascript
+    :linenos:
+    static Redirect(Response,Redirect:string)
+
+Requires an Express' response, and a redirect URI. When used in a view, it will redirect to a callback URI.
 

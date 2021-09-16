@@ -10,12 +10,12 @@ Sync(Models).then( ()=>{
         GreenlightServer.Request_Types.GET//Request type
     );
     server.setRoute('/plaintext',//Route Name
-        (Request)=>Views.PTextViewTest(Request,Models),//View
+        (Request,Response)=>Views.PTextViewTest(Request,Response,Models),//View
         GreenlightServer.Request_Types.GET//Request type
 
     );
     server.setRoute('/json',//Route Name
-        (Request)=>Views.JSONViewTest(Request,Models),//View
+        (Request,Response)=>Views.JSONViewTest(Request,Response,Models),//View
         GreenlightServer.Request_Types.GET//Request type
 
     );

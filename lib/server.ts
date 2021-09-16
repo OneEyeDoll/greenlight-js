@@ -57,6 +57,7 @@ class GreenlightServer{
             let ctx:any;//Context to pass to the response
             if(typeof view=="function") //Check if the view object is a function 
               view(req,res).then((ctx)=>{
+              if(ctx)
                 if(ctx.isRender){
                       //In case of template rendering. The view should return a dict containing template name and the context to the render function.
                         res.header("Content-Type", "text/html");
