@@ -1,5 +1,6 @@
 import  { Sequelize } from 'sequelize';
-import {BackendError} from "./errors.js"
+import {BackendError,GreenlightError} from "./errors.js"
+import GreenlightSettings from './settings_parser.js'
 
 /*
 The sequelize object is exported to allow user to construct new Models from it. The object depends on settings
@@ -8,8 +9,11 @@ class SequelizeSettings{
    public sequelize;//sequelize property to export
    private settings;//Settings property
    constructor(settings){
+     if(!(settings instanceof GreenlightSettings)){
+       throw new GreenlightError('The object that was passed to SequelizeSettings was not a GreenlightSettings object.',null)
+     }
      this.settings=settings.settings
-    //Setup for SQLite
+    //Switching through Backend Types
     switch(this.settings.BACKEND.TYPE){
       case 'sqlite': 
         this.sqlite()
@@ -27,7 +31,7 @@ class SequelizeSettings{
     }
       
    }
-   sqlite(){
+   private sqlite(){
      //Usage for sqlite
      if(!this.settings.BACKEND.DATABASE_PATH){
        throw new BackendError("Please specify PATH in BACKEND.")
@@ -37,7 +41,7 @@ class SequelizeSettings{
       storage: this.settings.BACKEND.DATABASE_PATH,//File name
     });
    }
-   dialect(){
+   private dialect(){
     //Check if required values exist
      if(!this.settings.BACKEND.DATABASE){
       throw new BackendError("Please specify DATABASE in BACKEND.")

@@ -101,7 +101,7 @@ GreenlightAuth
 
     static async login(Request,User,Username:string,Password:string,) {
 
-Requires a Express' request object, an Instantiated Greenlight builtin User object, an username and a *plaintext* password.
+Requires a Express' request object, a Greenlight builtin User object, an username and a *plaintext* password.
 This method will add authentication to the current Request.
 You can access the authentication with (RequestObject).session.loggedIn.
 
@@ -125,7 +125,7 @@ Sync
 .. code-block:: javascript
     :linenos:
 
-    Sync
+    async Sync (Ctx)
 
 A function that requires all models in the Database. It will sync the Database with Sequelize.
 
@@ -140,7 +140,43 @@ Requires an Express' response, a context with the data to be passed to the templ
 
 .. code-block:: javascript
     :linenos:
+
     static Redirect(Response,Redirect:string)
 
 Requires an Express' response, and a redirect URI. When used in a view, it will redirect to a callback URI.
+
+.. code-block:: javascript
+    :linenos:
+
+    static JSON(Response,Ctx)
+
+Requires an Express' response, and a dict that will be JSONized. When used in a view, it will return as response a JSON encoded string, that contains the data that will be displayed.
+
+.. code-block:: javascript
+    :linenos:
+
+    static Plaintext(Response,Message:string)
+
+Requires an Express' response, and a plaintext message. When used in a view, it will return a plaintext message.
+
+GreenlightSettings
+=======
+
+.. code-block:: javascript
+    :linenos:
+
+    setSettings(modulesettings)
+
+Requires a dictionary that contains all app's settings.
+
+SequelizeSettings
+=======
+
+.. code-block:: javascript
+    :linenos:
+
+    constructor(settings)
+
+Requires a GreenlightSettings object.
+
 

@@ -1,12 +1,16 @@
 import { Sequelize } from 'sequelize';
-import { BackendError } from "./errors.js";
+import { BackendError, GreenlightError } from "./errors.js";
+import GreenlightSettings from './settings_parser.js';
 /*
 The sequelize object is exported to allow user to construct new Models from it. The object depends on settings
 */
 var SequelizeSettings = /** @class */ (function () {
     function SequelizeSettings(settings) {
+        if (!(settings instanceof GreenlightSettings)) {
+            throw new GreenlightError('The object that was passed to SequelizeSettings was not a GreenlightSettings object.', null);
+        }
         this.settings = settings.settings;
-        //Setup for SQLite
+        //Switching through Backend Types
         switch (this.settings.BACKEND.TYPE) {
             case 'sqlite':
                 this.sqlite();

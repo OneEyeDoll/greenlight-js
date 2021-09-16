@@ -17,7 +17,7 @@ class GreenlightResponses{
         Response.end(JSON.stringify(Ctx));
 
     }
-    static Plaintext(Response,Message){
+    static Plaintext(Response,Message:string){
         Response.header("Content-Type", "text/plain");
         Response.end(Message);
 
