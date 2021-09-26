@@ -27,19 +27,20 @@ class GreenlightServer{
     constructor(settings:GreenlightSettings){
         if(!(settings instanceof GreenlightSettings)){
           throw new GreenlightError('The object that was passed to GreenlightServer was not a GreenlightSettings object.',null)
-        this.settings=settings.settings;
-        this.app=express();//Constructing app object
-        if (this.settings.PRODUCTION)//Helmet will be used only in production
-          this.app.use(helmet());//Constructing helmet object to increase security of the template
-        this.loader = new TwingLoaderFilesystem(this.settings['TEMPLATE_DIR']);//Creating a Loader based on the TEMPLATE_DIR setting
-        this.twing = new TwingEnvironment(this.loader);//Instantiating Twing
-        this.setMiddlewares();//Instantiating middlewares
-        //Creating a session
-        this.app.use(session({secret:this.settings.SECRET//User's secret key, passed in the GreenlightSettings class
-        ,name:'GreenlightSession',//Session's name
-        saveUninitialized:true,//
-        })
-    )
+          this.settings=settings.settings;
+          this.app=express();//Constructing app object
+          if (this.settings.PRODUCTION)//Helmet will be used only in production
+            this.app.use(helmet());//Constructing helmet object to increase security of the template
+          this.loader = new TwingLoaderFilesystem(this.settings['TEMPLATE_DIR']);//Creating a Loader based on the TEMPLATE_DIR setting
+          this.twing = new TwingEnvironment(this.loader);//Instantiating Twing
+          this.setMiddlewares();//Instantiating middlewares
+          //Creating a session
+          this.app.use(session({secret:this.settings.SECRET//User's secret key, passed in the GreenlightSettings class
+          ,name:'GreenlightSession',//Session's name
+          saveUninitialized:true,//
+          })
+      )
+      }
     }
     /**
     Method to serve static files. Call it before the serve() method. Otherwise, you can host by yourself the static files, but you'll need extra configuration.
