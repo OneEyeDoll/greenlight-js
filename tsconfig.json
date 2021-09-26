@@ -7,8 +7,10 @@
     },
     "exclude": [
       "node_modules",
-      "test"
+      "examples"
   ],
+
+
     "include": ["src", "decs.d.ts"],
     "files": [
         "./lib/sequelize_settings.ts",
@@ -20,5 +22,9 @@
         "./base_models/user.ts",
         "./lib/auth.ts",
         "./lib/module.ts"
-      ]
+      ],
+      "typedocOptions": {
+        "entryPoints": ["src/index.ts"],
+        "out": "docs"
+    }
 }

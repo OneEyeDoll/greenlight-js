@@ -36,7 +36,8 @@
     "mysql2": "^2.3.0",
     "sequelize": "^6.6.5",
     "sqlite3": "^4.2.0",
-    "twing": "^5.0.2"
+    "twing": "^5.0.2",
+    "typedoc": "^0.22.4"
   },
   "bin": {
     "greenlight": "./init.js"

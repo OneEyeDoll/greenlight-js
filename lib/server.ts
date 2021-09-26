@@ -31,17 +31,18 @@ class GreenlightServer{
         this.loader = new TwingLoaderFilesystem(this.settings['TEMPLATE_DIR']);//Creating a Loader based on the TEMPLATE_DIR setting
         this.twing = new TwingEnvironment(this.loader);//Instantiating Twing
         this.setMiddlewares();//Instantiating middlewares
-        this.app.use(session({secret:this.settings.SECRET
-    ,name:'GreenlightSession',
-    saveUninitialized:true,
-    })
+        //Creating a session
+        this.app.use(session({secret:this.settings.SECRET//User's secret key, passed in the GreenlightSettings class
+        ,name:'GreenlightSession',//Session's name
+        saveUninitialized:true,//
+        })
     )
     }
-    serveStatic(){
+    public serveStatic(){
       this.app.use(express.static(this.settings.STATIC_DIR))
     }
     //function that actually serves the content
-    serve():void{
+    public serve():void{
         this.port=4000;
         this.app.listen(this.port, () => {
             console.log(`App listening on port ${this.port}!`)
@@ -57,7 +58,7 @@ class GreenlightServer{
             let ctx:any;//Context to pass to the response
             if(typeof view=="function") //Check if the view object is a function 
               view(req,res).then((ctx)=>{
-              if(ctx)
+              if(ctx)//Check if a ctx exists
                 if(ctx.isRender){
                       //In case of template rendering. The view should return a dict containing template name and the context to the render function.
                         res.header("Content-Type", "text/html");
@@ -86,7 +87,7 @@ class GreenlightServer{
             this.app.delete(route, (req,res)=>callback(req,res));
             break;
         default:
-            throw new GreenlightError("The request type specified does not exist.",null);
+            throw new GreenlightError("The request type specified does not exist.",res);
             break;
         }
       return true;
