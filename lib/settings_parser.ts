@@ -3,7 +3,7 @@ class GreenlightSettings{
     public settings:{};//Settings dictionary
 
     //Settings setter
-    setSettings=(modulesettings)=>{
+    public setSettings=(modulesettings)=>{
         this.settings=modulesettings;
     }
 

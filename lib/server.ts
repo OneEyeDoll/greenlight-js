@@ -49,7 +49,7 @@ class GreenlightServer{
           });
     }
     //Using router passed as parameter
-    setRoute(route:string,//Route path
+    public setRoute(route:string,//Route path
       view:any,//View to process data before render
       request_type:Number//Name of the template to render
       )
@@ -87,7 +87,7 @@ class GreenlightServer{
             this.app.delete(route, (req,res)=>callback(req,res));
             break;
         default:
-            throw new GreenlightError("The request type specified does not exist.",res);
+            throw new GreenlightError("The request type specified does not exist.",null);
             break;
         }
       return true;
