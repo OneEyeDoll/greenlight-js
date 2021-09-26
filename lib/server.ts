@@ -45,7 +45,7 @@ class GreenlightServer{
     /**
     Method to serve static files. Call it before the serve() method. Otherwise, you can host by yourself the static files, but you'll need extra configuration.
     */
-    public serveStatic(){
+    public serveStatic():void{
       this.app.use(express.static(this.settings.STATIC_DIR))
     }
     /**
