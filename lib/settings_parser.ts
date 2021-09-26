@@ -2,9 +2,12 @@ class GreenlightSettings{
 
     public settings:{};//Settings dictionary
 
-    //Settings setter
-    public setSettings=(modulesettings)=>{
-        this.settings=modulesettings;
+    /**
+    *Call this method to set the settings object.
+    *@param moduleSettings - The settings dictionary to be used in the object
+    */
+    public setSettings=(moduleSettings)=>{
+        this.settings=moduleSettings;
     }
 
 

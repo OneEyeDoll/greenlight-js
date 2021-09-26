@@ -15,6 +15,7 @@ enum Request_Types{
 }
 //Server class. This is the core of the framework. There are 2 important methods: serve, that starts an express server and setRoute, that allows to specify a route
 class GreenlightServer{
+
     private app:express.Express;//Express Application object
     public port:Number;//Server port
     private loader:typeof TwingLoaderFilesystem;
@@ -24,6 +25,8 @@ class GreenlightServer{
     static Request_Types=Request_Types;
     //Constructing server with settings
     constructor(settings:GreenlightSettings){
+        if(!(settings instanceof GreenlightSettings)){
+          throw new GreenlightError('The object that was passed to GreenlightServer was not a GreenlightSettings object.',null)
         this.settings=settings.settings;
         this.app=express();//Constructing app object
         if (this.settings.PRODUCTION)//Helmet will be used only in production
@@ -38,20 +41,30 @@ class GreenlightServer{
         })
     )
     }
+    /**
+    Method to serve static files. Call it before the serve() method. Otherwise, you can host by yourself the static files, but you'll need extra configuration.
+    */
     public serveStatic(){
       this.app.use(express.static(this.settings.STATIC_DIR))
     }
-    //function that actually serves the content
+    /**
+    Method to start the server.
+    */
     public serve():void{
         this.port=4000;
         this.app.listen(this.port, () => {
             console.log(`App listening on port ${this.port}!`)
           });
     }
-    //Using router passed as parameter
-    public setRoute(route:string,//Route path
-      view:any,//View to process data before render
-      request_type:Number//Name of the template to render
+    /**
+    Set a route to the server.
+    @params {string} route - Route path
+    @params {any} view - Function to process data before rendering. Equivalent of a controller
+    @params {Number} request_type - The type of request, currently only POST,PUT,PATCH and Get are supported.
+    */
+    public setRoute(route:string,
+      view:any,
+      request_type:Number
       )
       :Boolean{
         let callback=(req, res) => {
@@ -93,7 +106,9 @@ class GreenlightServer{
       return true;
 
     }
-
+    /**
+    Sets all the middlewares that were specified in the settings
+    */
     private setMiddlewares(){
       let middleware:()=>any;
       for(middleware of this.settings.MIDDLEWARES){
