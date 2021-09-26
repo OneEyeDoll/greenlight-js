@@ -6,3 +6,9 @@ This project is focused to bring a valid alternative to Django in NodeJS. This p
 # Documentation
 
 Check the documentation [here](https://greenlight.oneeyedoll.tech/).
+
+# Examples
+
+Check the examples folder to see some dummy code to begin with.
+
+
