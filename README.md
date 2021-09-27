@@ -1,5 +1,4 @@
-![Eclipse Marketplace](https://img.shields.io/eclipse-marketplace/l/greenlight.js)
-
+![npm](https://img.shields.io/npm/v/greenlight-js)
 # Greenlight.js
 MVT framework for NodeJS.
 
@@ -15,12 +14,14 @@ Check the examples folder to see some dummy code to begin with.
 
 First, create a project with 
 
-```npx greenlight (PROJECT_NAME)
+```
+npx greenlight (PROJECT_NAME)
 ```
 
 then, add your views in views.js.
 
-```const Views={
+```
+const Views={
     RenderViewTest: async  (Request,Response,Models)=>{
         return GreenlightResponses.Render(Response,Request.params,'index.html')
     },

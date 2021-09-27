@@ -1,6 +1,6 @@
 {
   "name": "greenlight-js",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "type": "module",
   "description": "A modular MVC-based framework for node.js",
   "main": "./build/lib/module.js",
