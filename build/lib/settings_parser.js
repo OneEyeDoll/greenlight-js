@@ -5,7 +5,7 @@ var GreenlightSettings = /** @class */ (function () {
         *Call this method to set the settings object.
         *@param moduleSettings - The settings dictionary to be used in the object
         */
-        this.ss = function (moduleSettings) {
+        this.setSettings = function (moduleSettings) {
             _this.settings = moduleSettings;
         };
     }

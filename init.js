@@ -22,7 +22,7 @@ fs.writeFileSync(models,`
 import {default as Sequelize} from 'sequelize';
 const DataTypes=Sequelize.DataTypes;
 import settings from './settings.js'
-import {SequelizeSettings} from 'greenlight';
+import {SequelizeSettings} from 'greenlight-js';
 //Instantiating a sequelize settings object
 let sequelize_settings=new SequelizeSettings(settings);
 
@@ -56,7 +56,7 @@ export default Views;
 fs.writeFileSync(settings,`
 import path from 'path'
 import { fileURLToPath } from 'url';
-import {GreenlightSettings} from 'greenlight'
+import {GreenlightSettings} from 'greenlight-js'
 
 const PATH=path.dirname(fileURLToPath(import.meta.url));
 
@@ -81,7 +81,9 @@ let settings_array={
     //WARNING: CHANGE IT
     SECRET:'12345unsecurechangeit',
 
-    PORT: 4000
+    PORT: 4000,
+
+    MIDDLEWARES:[],
 }
 
 
@@ -99,9 +101,9 @@ fs.writeFileSync(server,`
 import {Models} from './models.js'
 import Views from './views.js'
 import settings from './settings.js'
-import {sync_function,GreenlightServer} from "greenlight-js"
+import {Sync,GreenlightServer} from "greenlight-js"
 
-sync_function(Models).then( ()=>{
+Sync(Models).then( ()=>{
     let server=new GreenlightServer(settings);
   
 //Write your routes here

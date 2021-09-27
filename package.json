@@ -1,6 +1,6 @@
 {
   "name": "greenlight-js",
-  "version": "0.1.0",
+  "version": "0.1.6",
   "type": "module",
   "description": "A modular MVC-based framework for node.js",
   "main": "./build/lib/module.js",
@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc ",
     "clean": "tsc --clean",
-    "start": "node ./test/server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
     "greenlight"
   ],
   "author": "OneEyeDoll",
-  "license": "ISC",
+  "license": "GPL",
   "bugs": {
     "url": "https://github.com/OneEyeDoll/greenglight.js/issues"
   },
