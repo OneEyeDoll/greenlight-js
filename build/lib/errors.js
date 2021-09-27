@@ -1,6 +1,3 @@
-/*
- * Error handling class. This class will handle all internal server errors, and will try to avoid
- */
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -16,13 +13,16 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+/*
+ * Error handling class. This class will handle all internal server errors, and will try to avoid
+ */
 //Generic greenlight error
 var GreenlightError = /** @class */ (function (_super) {
     __extends(GreenlightError, _super);
     function GreenlightError(message, response) {
         var _this = _super.call(this, message) || this;
         if (response) {
-            response.end(_this.stack);
+            response.status(400).end(_this.stack);
         }
         return _this;
     }

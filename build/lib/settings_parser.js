@@ -1,9 +1,12 @@
 var GreenlightSettings = /** @class */ (function () {
     function GreenlightSettings() {
         var _this = this;
-        //Settings setter
-        this.setSettings = function (modulesettings) {
-            _this.settings = modulesettings;
+        /**
+        *Call this method to set the settings object.
+        *@param moduleSettings - The settings dictionary to be used in the object
+        */
+        this.ss = function (moduleSettings) {
+            _this.settings = moduleSettings;
         };
     }
     return GreenlightSettings;

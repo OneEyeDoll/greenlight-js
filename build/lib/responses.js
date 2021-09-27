@@ -2,7 +2,7 @@ var GreenlightResponses = /** @class */ (function () {
     function GreenlightResponses() {
     }
     //Static class that offers utilities to return more easily responses
-    /*
+    /**
     Render response for a view.
     *
     * @param {Any} Response - Express' response object
@@ -14,7 +14,7 @@ var GreenlightResponses = /** @class */ (function () {
         Response.header("Content-Type", "text/html");
         return { isRender: 1, ctx: ctx, template_name: template_name };
     };
-    /*
+    /**
     Redirect response for a view.
     *
     * @param {Any} Response - Express' response object
@@ -25,7 +25,7 @@ var GreenlightResponses = /** @class */ (function () {
         Response.redirect(Redirect);
         return null;
     };
-    /*
+    /**
     Json response for a view.
     *
     * @param {Any} Response - Express' response object
@@ -35,7 +35,7 @@ var GreenlightResponses = /** @class */ (function () {
         Response.header("Content-Type", "application/json");
         Response.end(JSON.stringify(ctx));
     };
-    /*
+    /**
     Plaintext response for a view.
     *
     * @param {Any} Response - Express' response object

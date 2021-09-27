@@ -38,8 +38,8 @@ import crypto from "crypto";
 var GreenlightAuth = /** @class */ (function () {
     function GreenlightAuth() {
     }
-    /*
-        * Given a request, it will authenticate it if the username and password are stored in the Database
+    /**
+        * Given a request, it will authenticate if an user has those credentials
         *
         *
         * @param {express.Request} Request - Request that handles the session
@@ -66,8 +66,8 @@ var GreenlightAuth = /** @class */ (function () {
             });
         });
     };
-    /*
-        * Given a request, it will remove set the loggedIn status to false
+    /**
+        * Given a request, it will deauthenticate the session
         *
         *
         * @param {express.Request} Request - Request that handles the session
@@ -75,8 +75,8 @@ var GreenlightAuth = /** @class */ (function () {
     GreenlightAuth.logout = function (Request) {
         Request.session.loggedIn = false;
     };
-    /*
-        * Given a request, it will authenticate it if the username and password are stored in the Database
+    /**
+        * Creates a new User in the Users table. This will be done through Sequelize, so ensure to pass a GreenlightUser model to this method.
         *
         *
         * @param {Any} User - The User model that will be used for the query

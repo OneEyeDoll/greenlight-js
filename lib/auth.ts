@@ -1,5 +1,9 @@
 import crypto from "crypto"
 import express from "express"
+import {RequestAuth} from "./types.js"
+import { Request } from 'express-serve-static-core';
+
+
 export default class GreenlightAuth{
 /**
     * Given a request, it will authenticate if an user has those credentials
@@ -10,7 +14,7 @@ export default class GreenlightAuth{
     * @param {String} Username - The user to authenticated's username
     * @param {Password} Password - The user to authenticated's password
 */
-    public static async login(Request,User,Username:string,Password:string,) {
+    public static async login(Request:RequestAuth,User,Username:string,Password:string,):Promise<void> {
         //creating hash object 
         let hash = crypto.createHash('sha512');
         //passing the data to be hashed
@@ -19,7 +23,7 @@ export default class GreenlightAuth{
         let PasswordHash= data.digest('hex');
 
         const results = await User.findOne({ where: { username: Username,password: PasswordHash } });
-        if(results!==null)
+        if(results!==null )
             Request.session.loggedIn=true;
     }
 /**
@@ -28,7 +32,7 @@ export default class GreenlightAuth{
     *
     * @param {express.Request} Request - Request that handles the session
 */
-    public static  logout(Request){
+    public static  logout(Request:RequestAuth):void{
         Request.session.loggedIn=false;
     }
 
@@ -44,7 +48,7 @@ export default class GreenlightAuth{
     * @param {String} Email - The new user's Email
     */
 
-    public static signup(User,Username:string,firstName:string,Password:string,lastName:string="",Email:string=""){
+    public static signup(User,Username:string,firstName:string,Password:string,lastName:string="",Email:string=""):void{
         //creating hash object 
         let hash = crypto.createHash('sha512');
         //passing the data to be hashed

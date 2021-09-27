@@ -1,5 +1,5 @@
 {
-  "name": "greenlight",
+  "name": "greenlight-js",
   "version": "0.1.0",
   "type": "module",
   "description": "A modular MVC-based framework for node.js",
@@ -28,10 +28,12 @@
   },
   "homepage": "https://github.com/OneEyeDoll/greenglight.js#readme",
   "dependencies": {
+    "@types/express-session": "^1.17.4",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
+    "greenlight-js": "^0.1.0",
     "helmet": "^4.6.0",
     "mysql2": "^2.3.0",
     "sequelize": "^6.6.5",

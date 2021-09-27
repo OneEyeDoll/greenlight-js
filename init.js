@@ -37,12 +37,13 @@ const Models={
       type: DataTypes.STRING
       // allowNull defaults to true
     }
-  })
+  }),
+  //write your models here
 }
 export {Models};
 `)
 fs.writeFileSync(views,`
-import {GreenlightResponses} from "greenlight"
+import {GreenlightResponses} from "greenlight-js"
 
 /* Write your code here */
 const Views={
@@ -76,6 +77,11 @@ let settings_array={
     PRODUCTION:false,
 
     STATIC_PATH: '/static',
+
+    //WARNING: CHANGE IT
+    SECRET:'12345unsecurechangeit',
+
+    PORT: 4000
 }
 
 
@@ -93,7 +99,7 @@ fs.writeFileSync(server,`
 import {Models} from './models.js'
 import Views from './views.js'
 import settings from './settings.js'
-import {sync_function,GreenlightServer} from "greenlight"
+import {sync_function,GreenlightServer} from "greenlight-js"
 
 sync_function(Models).then( ()=>{
     let server=new GreenlightServer(settings);

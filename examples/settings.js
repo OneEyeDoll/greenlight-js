@@ -29,7 +29,9 @@ let settings_array={
         bodyParser(),
     ],
 
-    SECRET:'unscure123'
+    SECRET:'unsecure123',
+
+    PORT: 4000,
 }
 
 //Settings object setup section. Do not edit the code below
