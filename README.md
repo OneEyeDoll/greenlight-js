@@ -2,7 +2,7 @@
 # Greenlight.js
 MVT framework for NodeJS.
 
-This project is focused to bring a valid alternative to Django in NodeJS. The project relies on ExpressJS. This project's goals are semplicity, time saving and scalability. Also, since we took inspiration from Django Project, we decided to name our architecture "MVT", instead of MVC, like Django does. Also, we encourage modern JavaScript, so all imports are done through ES6 syntax. We support also TypeScript, and the project was fully written with it. We use the [Twing](https://github.com/NightlyCommit/twing) template engine, and [Sequelize](https://sequelize.org/) ORM.
+This project is focused to bring a valid alternative to Django for NodeJS. The project relies on ExpressJS. This project's goals are semplicity, developer-friendliness and scalability. Since we took inspiration from Django Project, we decided to name our architecture "MVT", instead of MVC, like Django does. Also, we encourage modern JavaScript, so all imports are done through ES6 syntax. We support also TypeScript, and the project was fully written with it. We use the [Twing](https://github.com/NightlyCommit/twing) template engine, and [Sequelize](https://sequelize.org/) ORM.
 
 Check the documentation [here](https://greenlight.oneeyedoll.tech/).
 
@@ -44,7 +44,7 @@ const Views={
 }
 ```
 
-You can specify your Models in the models.js file
+You can specify your Models in the models.js file.
 
 ```
 const Models={
@@ -63,7 +63,7 @@ const Models={
 }
 ```
 
-You can specify your routes in server.js
+You can specify your routes in server.js file.
 
 ```
     server.setRoute('/render/:id',//Route Name
