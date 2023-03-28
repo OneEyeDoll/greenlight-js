@@ -1,8 +1,8 @@
 ![npm](https://img.shields.io/npm/v/greenlight-js)![GitHub](https://img.shields.io/github/license/oneeyedoll/greenlight-js)
 # Greenlight.js
-MVT framework for NodeJS.
+MVC framework for NodeJS.
 
-This project is focused to bring a valid alternative to Django for NodeJS. This project's goals are semplicity, developer-friendliness and scalability. Since we took inspiration from Django Project, we decided to name our architecture "MVT", instead of MVC, like Django does. Also, we encourage modern JavaScript, so all imports are done through ES6 syntax. We support also TypeScript, and the project was fully written with it. We use the [Twing](https://github.com/NightlyCommit/twing) template engine, and [Sequelize](https://sequelize.org/) ORM. We also use the famous ExpressJS as HTTP server engine. You should have familiarity on response and request objects of Express, to fully leverage the framework.
+
 
 Check the documentation [here](https://greenlight.oneeyedoll.tech/).
 
