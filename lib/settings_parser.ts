@@ -1,6 +1,8 @@
+import ISettings from "./interfaces/ISettings"
+
 class GreenlightSettings{
 
-    public settings:{};//Settings dictionary
+    public settings:ISettings;//Settings dictionary
 
     /**
     *Call this method to set the settings object.

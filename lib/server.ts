@@ -1,10 +1,11 @@
-import express from "express"
+import express, { RequestHandler } from "express"
 import helmet from "helmet"
 import crypto from "crypto"
 import session from "express-session"
 import {GreenlightError} from "./errors.js"
 import {TwingEnvironment, TwingLoaderFilesystem} from "twing"
 import GreenlightSettings  from "./settings_parser.js";
+import ISettings from "./interfaces/ISettings.js"
 
 //Type of requests
 enum Request_Types{
@@ -29,7 +30,7 @@ class GreenlightServer{
 
     private loader:typeof TwingLoaderFilesystem;
     private twing:typeof TwingEnvironment;
-    private settings;
+    private settings: ISettings;
 
     //Constructing server with settings
     constructor(settings:GreenlightSettings){
@@ -98,20 +99,21 @@ class GreenlightServer{
             if(typeof view=="function") //Check if the view object is a function 
 
               //Calling the view
-              view(req,res).then((ctx)=>{
-              if(ctx)//Check if a context exists
-                  if(ctx.isRender){
-                        //In case of template rendering. The view should return a dict containing template name and the context to the render function.
-                          res.header("Content-Type", "text/html");
-                          this.twing.render(ctx.template_name, ctx.ctx).then((output) => {
-                            res.end(output);
-                          });
-                  }
-              })
-            else{
-              //If the view is not a function, it will throw a GreenlightError.
-              throw new GreenlightError(`The view is not a function. It is: ${typeof view}`,res)
-            }
+              view(req,res).then(
+              (ctx)=>{
+                if(ctx)//Check if a context exists
+                    if(ctx.isRender){
+                          //In case of template rendering. The view should return a dict containing template name and the context to the render function.
+                            res.header("Content-Type", "text/html");
+                            this.twing.render(ctx.template_name, ctx.ctx).then((output) => {
+                              res.end(output);
+                            });
+                    }
+                })
+                else{
+                //If the view is not a function, it will throw a GreenlightError.
+                  throw new GreenlightError(`The view is not a function. It is: ${typeof view}`,res)
+                }
           }
         //Switching through request type. It will call callback with request and response parameter
         switch(request_type){
@@ -141,7 +143,7 @@ class GreenlightServer{
     Sets all the middlewares that were specified in the settings
     */
     private setMiddlewares():void{
-      let middleware:()=>any;
+      let middleware:RequestHandler;
       for(middleware of this.settings.MIDDLEWARES){
         this.app.use(middleware);
       }

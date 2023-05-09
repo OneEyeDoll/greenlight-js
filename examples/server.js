@@ -1,4 +1,4 @@
-import {Models} from './models.js'
+import Models from './models.js'
 import Views from './views.js'
 import settings from './settings.js'
 import {Sync,GreenlightServer} from "../build/lib/module.js"

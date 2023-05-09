@@ -1,22 +1,24 @@
 import  { Sequelize } from 'sequelize';
-import {BackendError,GreenlightError} from "./errors.js"
-import GreenlightSettings from './settings_parser.js'
+import {BackendError,GreenlightError} from "./errors.js";
+import GreenlightSettings from './settings_parser.js';
+import ISettings from "./interfaces/ISettings";
 
 /** 
-The SequelizeSettings allows programmer to create models upon it.
+The SequelizeSettings allows developer to create models upon it. 
+It contains all the needed information to run the server with the required data.
 */
 class SequelizeSettings{
-   public sequelize;//sequelize property to export
-   private settings;//Settings property
+   private _sequelize;//sequelize property to export
+   private settings: ISettings;//Settings property
 
    /**
     The sequelize settings object will be created upon a GreenlightSettings object.
     */
-   constructor(settings){
+   constructor(settings: GreenlightSettings){
      if(!(settings instanceof GreenlightSettings)){
        throw new GreenlightError('The object that was passed to SequelizeSettings was not a GreenlightSettings object.',null)
      }
-     this.settings=settings.settings
+     this.settings = settings.settings
     //Switching through Backend Types
     switch(this.settings.BACKEND.TYPE){
       case 'sqlite': 
@@ -35,12 +37,13 @@ class SequelizeSettings{
     }
       
    }
+   public sequelize() { return this.sequelize; }
    private sqlite(){
      //Usage for sqlite
      if(!this.settings.BACKEND.DATABASE_PATH){
        throw new BackendError("Please specify PATH in BACKEND.")
      }
-    this.sequelize = new Sequelize({//Creating sequelize instance
+    this._sequelize = new Sequelize({//Creating sequelize instance
       dialect: 'sqlite',//Dialect setup
       storage: this.settings.BACKEND.DATABASE_PATH,//File name
     });
@@ -60,9 +63,9 @@ class SequelizeSettings{
       throw new BackendError("Please specify HOST in BACKEND.")
     }
 
-     this.sequelize = new Sequelize(this.settings.BACKEND.DATABASE,this.settings.BACKEND.USERNAME,this.settings.BACKEND.PASSWORD,{
+     this._sequelize = new Sequelize(this.settings.BACKEND.DATABASE,this.settings.BACKEND.USERNAME,this.settings.BACKEND.PASSWORD,{
        host:this.settings.BACKEND.HOST,
-       dialect:this.settings.BACKEND.DIALECT,
+       dialect:this.settings.BACKEND.TYPE,
      })
    }
    

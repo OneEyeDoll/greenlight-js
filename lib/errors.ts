@@ -5,7 +5,7 @@ import express from "express"
  */
 
 //Generic greenlight error
-export class GreenlightError extends Error{
+export class GreenlightError extends Error {
     constructor(message:string,response:express.Response){
         super(message);
         if(response){

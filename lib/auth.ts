@@ -9,7 +9,7 @@ export default class GreenlightAuth{
     * Given a request, it will authenticate if an user has those credentials
     *
     *
-    * @param {express.Request} Request - Request that handles the session
+    * @param {express.Request} Request - Request which contains session cookies and other IDs.
     * @param {Any} User - The User model that will be used for the query
     * @param {String} Username - The user to authenticated's username
     * @param {Password} Password - The user to authenticated's password
