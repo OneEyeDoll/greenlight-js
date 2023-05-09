@@ -8,7 +8,7 @@ class GreenlightSettings{
     *Call this method to set the settings object.
     *@param moduleSettings - The settings dictionary to be used in the object
     */
-    public setSettings=(moduleSettings)=>{
+    public setSettings=(moduleSettings:ISettings)=>{
         this.settings=moduleSettings;
     }
 
